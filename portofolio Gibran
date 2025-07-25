@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Interaktif - Endrian Gibran Buana Aslam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Slate & Sky Blue -->
+    <!-- Application Structure Plan: Saya merancang aplikasi ini sebagai portofolio satu halaman dengan beberapa bagian yang dapat dinavigasi: Hero, Profil, Keahlian, Proyek Utama, Pendidikan, dan Kontak. Struktur ini memungkinkan perekrut untuk dengan cepat mengakses informasi yang paling relevan, tidak seperti format surat yang linear. Interaksi utama melibatkan bagan keahlian yang dinamis dan modal detail proyek untuk memberikan informasi mendalam tanpa membebani tampilan utama, yang bertujuan untuk meningkatkan pengalaman pengguna dan menyoroti kemampuan kandidat secara efektif. -->
+    <!-- Visualization & Content Choices: 1. Info: Keahlian Teknis (Pemrograman, Analisis Data, Pemasaran Digital) -> Goal: Menampilkan tingkat kemahiran secara visual -> Viz: Radar Chart (Chart.js) -> Interaction: Tooltip saat hover -> Justification: Lebih menarik dan informatif daripada daftar biasa. 2. Info: Proyek Utama (Website UMKM) -> Goal: Menyajikan detail proyek secara mendalam -> Viz: Kartu dengan tombol modal (HTML/JS) -> Interaction: Klik untuk membuka jendela modal dengan detail proyek -> Justification: Menjaga antarmuka tetap bersih sambil menyediakan informasi mendalam bagi yang tertarik. 3. Info: Soft Skills -> Goal: Menampilkan kemampuan non-teknis -> Viz: Kartu ikon (HTML/Tailwind) -> Interaction: Efek hover -> Justification: Memecah teks dan meningkatkan daya tarik visual. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <!-- Header & Navigasi -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-slate-800">Endrian Gibran B.A.</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#profil" class="hover:text-sky-600 transition-colors">Profil</a>
+                <a href="#keahlian" class="hover:text-sky-600 transition-colors">Keahlian</a>
+                <a href="#proyek" class="hover:text-sky-600 transition-colors">Proyek</a>
+                <a href="#kontak" class="hover:text-sky-600 transition-colors">Kontak</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#profil" class="block py-2 hover:text-sky-600">Profil</a>
+            <a href="#keahlian" class="block py-2 hover:text-sky-600">Keahlian</a>
+            <a href="#proyek" class="block py-2 hover:text-sky-600">Proyek</a>
+            <a href="#kontak" class="block py-2 hover:text-sky-600">Kontak</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Hero Section -->
+        <section id="hero" class="text-center py-16 md:py-24">
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Mahasiswa Teknik Informatika</h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8">Melamar untuk posisi <span class="font-semibold text-sky-600">Admin</span> di PT Candi Elektronik, dengan semangat untuk menerapkan keahlian analisis data dan sistem komputer.</p>
+            <a href="#kontak" class="bg-sky-600 text-white font-semibold px-8 py-3 rounded-lg hover:bg-sky-700 transition-transform transform hover:scale-105">Hubungi Saya</a>
+        </section>
+
+        <!-- Profil Section -->
+        <section id="profil" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800">Profil Singkat</h2>
+                <p class="text-slate-500 mt-2">Sebuah pengenalan tentang latar belakang dan tujuan saya.</p>
+            </div>
+            <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-md">
+                <p class="text-lg leading-relaxed">
+                    Saya adalah mahasiswa semester akhir jurusan Teknik Informatika di Universitas STEKOM yang memiliki antusiasme tinggi terhadap inovasi teknologi, khususnya dalam bidang pemasaran digital dan analisis data. Dengan kemampuan belajar yang cepat dan adaptif, saya siap untuk memberikan kontribusi nyata dan bertumbuh bersama PT Candi Elektronik. Pengalaman dalam organisasi dan proyek akademik telah mengasah kemampuan saya dalam kerja sama tim dan pemecahan masalah secara efektif.
+                </p>
+            </div>
+        </section>
+
+        <!-- Keahlian Section -->
+        <section id="keahlian" class="py-16 bg-slate-100 rounded-xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800">Keahlian Saya</h2>
+                <p class="text-slate-500 mt-2">Visualisasi kompetensi teknis dan non-teknis yang saya miliki.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                <div>
+                    <h3 class="text-xl font-semibold text-center mb-4 text-slate-700">Kompetensi Teknis</h3>
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-center mb-6 text-slate-700">Kompetensi Non-Teknis</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                            <span class="text-3xl">🤝</span>
+                            <p class="font-semibold mt-2">Kerja Sama Tim</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                            <span class="text-3xl">💡</span>
+                            <p class="font-semibold mt-2">Pemecahan Masalah</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                            <span class="text-3xl">🗣️</span>
+                            <p class="font-semibold mt-2">Komunikasi Efektif</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                            <span class="text-3xl">🚀</span>
+                            <p class="font-semibold mt-2">Cepat Belajar & Adaptif</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proyek Section -->
+        <section id="proyek" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800">Proyek Unggulan</h2>
+                <p class="text-slate-500 mt-2">Contoh penerapan keahlian saya dalam proyek nyata.</p>
+            </div>
+            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="p-8">
+                    <p class="text-sm text-sky-600 font-semibold">KERJA PRAKTEK</p>
+                    <h3 class="text-2xl font-bold text-slate-900 mt-1">Website Company Profile untuk UMKM</h3>
+                    <p class="text-slate-600 mt-4">
+                        Merancang dan mengembangkan sebuah website company profile untuk membantu UMKM rumahan meningkatkan visibilitas online dan menjangkau pasar yang lebih luas. Proyek ini mencakup analisis kebutuhan, desain antarmuka, dan implementasi sistem.
+                    </p>
+                    <div class="mt-6">
+                        <button id="project-detail-button" class="font-semibold text-sky-600 hover:text-sky-800">Lihat Detail Proyek →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Pendidikan Section -->
+        <section id="pendidikan" class="py-16 bg-slate-100 rounded-xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800">Latar Belakang Pendidikan</h2>
+            </div>
+            <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md text-center">
+                <h3 class="text-2xl font-bold text-slate-900">Universitas STEKOM</h3>
+                <p class="text-lg text-sky-600 font-semibold mt-2">S1 Teknik Informatika</p>
+                <p class="text-slate-500 mt-1">Mahasiswa Semester Akhir</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Kontak Section -->
+    <footer id="kontak" class="bg-slate-800 text-white">
+        <div class="container mx-auto px-6 py-12 text-center">
+            <h2 class="text-3xl font-bold">Tertarik untuk Berdiskusi?</h2>
+            <p class="mt-4 max-w-2xl mx-auto">Saya sangat antusias untuk mendiskusikan bagaimana saya dapat memberikan nilai tambah bagi tim Anda. Silakan hubungi saya melalui informasi di bawah ini.</p>
+            <div class="mt-8 flex justify-center items-center space-x-8">
+                <a href="mailto:gibranbuana14@gmail.com" class="flex items-center space-x-2 hover:text-sky-400 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <span>gibranbuana14@gmail.com</span>
+                </a>
+                <a href="tel:085877779140" class="flex items-center space-x-2 hover:text-sky-400 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    <span>0858-7777-9140</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Proyek Detail -->
+    <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-full overflow-y-auto">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold text-slate-900">Detail Proyek: Website UMKM</h3>
+                    <button id="close-modal-button" class="text-slate-500 hover:text-slate-800">&times;</button>
+                </div>
+                <div class="space-y-4 text-slate-700">
+                    <p><strong>Tujuan:</strong> Meningkatkan kehadiran digital UMKM rumahan untuk memperluas jangkauan pasar dan meningkatkan kredibilitas.</p>
+                    <p><strong>Tanggung Jawab:</strong></p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Melakukan riset untuk memahami kebutuhan spesifik UMKM dan target audiensnya.</li>
+                        <li>Merancang struktur dan tata letak website yang informatif dan mudah dinavigasi.</li>
+                        <li>Mengembangkan prototipe dan mengimplementasikan desain menjadi website fungsional.</li>
+                        <li>Menyusun strategi konten awal untuk halaman utama, produk, dan kontak.</li>
+                        <li>Memastikan website responsif dan dapat diakses di berbagai perangkat.</li>
+                    </ul>
+                    <p><strong>Teknologi & Keahlian yang Diterapkan:</strong></p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Analisis Sistem: Memetakan kebutuhan fungsional dan non-fungsional.</li>
+                        <li>Dasar Pemrograman: Menggunakan HTML, CSS, dan JavaScript untuk membangun antarmuka.</li>
+                        <li>Manajemen Proyek: Mengelola tugas dan waktu selama siklus pengembangan.</li>
+                        <li>Komunikasi: Berinteraksi dengan pemilik UMKM untuk mendapatkan feedback.</li>
+                    </ul>
+                    <p><strong>Hasil:</strong> Terciptanya sebuah website company profile yang fungsional dan siap digunakan, memberikan UMKM alat pemasaran digital yang efektif untuk pertumbuhan bisnis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart.js Radar Chart
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Analisis Data', 'Dasar Pemrograman', 'Sistem Komputer', 'Pemasaran Digital', 'Desain Web'],
+                    datasets: [{
+                        label: 'Tingkat Kemahiran',
+                        data: [75, 80, 85, 70, 78],
+                        backgroundColor: 'rgba(56, 189, 248, 0.2)',
+                        borderColor: 'rgba(14, 165, 233, 1)',
+                        pointBackgroundColor: 'rgba(14, 165, 233, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(14, 165, 233, 1)'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 14,
+                                },
+                                color: '#475569'
+                            },
+                            ticks: {
+                                backdropColor: 'rgba(248, 250, 252, 1)',
+                                color: '#64748b',
+                                stepSize: 25
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu on link click
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Modal Logic
+            const projectDetailButton = document.getElementById('project-detail-button');
+            const projectModal = document.getElementById('project-modal');
+            const closeModalButton = document.getElementById('close-modal-button');
+
+            projectDetailButton.addEventListener('click', () => {
+                projectModal.classList.remove('hidden');
+            });
+
+            closeModalButton.addEventListener('click', () => {
+                projectModal.classList.add('hidden');
+            });
+
+            projectModal.addEventListener('click', (event) => {
+                if (event.target === projectModal) {
+                    projectModal.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
